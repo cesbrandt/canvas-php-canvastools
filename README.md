@@ -6,6 +6,7 @@
 - [Requirements](#requirements)
 - [Install](#install)
 - [How To Use](#how-to-use)
+  - [API Calls](#api-calls)
 - [Creating a New Report](#creating-a-new-report)
   - [class.Template.php](#classtemplatephp)
   - [Report Generation](#report-generation)
@@ -27,6 +28,7 @@ Queries for all all supplied calls have been tested and verified with the Canvas
 - Expansive call structure
 - HTML report generator
 - Excel report exporting
+- Pagination accommodation
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -63,6 +65,75 @@ There are five (5) "reports" included with CanvasTools:
 Reports are enabled in the `config.php` file. Simply add/remove the name of the classes whose reports you want enabled.
 
 As demonstrated by the `AccountTree` class, "report" is loosely used. The primary goal is a simplified API querying of the Canvas LMS. However, a report template has been created from generated meaningful reports from the data retrieved. These generic "reports" can be modified to supply any information pulled from the API calls.
+
+###### API Calls
+The biggest component of CanvasTools is the streamlining of API calls. Only **GET** calls are supported, but the code has been confirmed to work with **PUT**, **POST**, and **DELETE**. Having said that:
+
+**Disclaimer**: Use of any calls other than **GET** runs the risk of data compromise and it **HIGHLY** discouraged.
+
+As the [Canvas API](https://api.instructure.com/) is always changing, only those calls that seems least likely to break and most likely to be used were included in CanvasTools. The calls can be easily expanded by editing the `$validTree` array of the `Basic` class found at `./lib/class.basic.php`. There four (4) primary levels to this array:
+- Section (account, course, user)
+- Data Type
+  - This is basically a descriptor of what is being worked with (i.e., Info, Admins, Courses, Apps).
+- Call Type (GET, PUT, POST, DELETE)
+- API Path
+
+Here is a list of all the (currently) supported queries and the corresponding API calls:
+
+| Section | Data Type        | Call Type | API Path                                               |
+|---------|------------------|:---------:|--------------------------------------------------------|
+| account | Info             | GET       | /accounts/:account_id                                  |
+|         | Admins           | GET       | /accounts/:account_id/admins                           |
+|         | Courses          | GET       | /accounts/:account_id/courses                          |
+|         | ExternalTools    | GET       | /accounts/:account_id/external_tools                   |
+|         | ExternalToolInfo | GET       | /accounts/:account_id/external_tools/:external_tool_id |
+|         | Apps             | GET       | /accounts/:account_id/lti_apps                         |
+|         | Reports          | GET       | /accounts/:account_id/reports                          |
+|         | SubAccounts      | GET       | /accounts/:account_id/sub_accounts                     |
+| course  | Info             | GET       | /courses/:course_id                                    |
+|         | Assignments      | GET       | /courses/:course_id/assignments                        |
+|         | AssignmentInfo   | GET       | /courses/:course_id/assignments/:id                    |
+|         | Discussions      | GET       | /courses/:course_id/discussion_topics                  |
+|         | DiscussionInfo   | GET       | /courses/:course_id/discussion_topics/:topic_id        |
+|         | DiscussionThread | GET       | /courses/:course_id/discussion_topics/:topic_id/view   |
+|         | ExternalTools    | GET       | /courses/:course_id/external_tools                     |
+|         | ExternalToolInfo | GET       | /courses/:course_id/external_tools/:external_tool_id   |
+|         | Files            | GET       | /courses/:course_id/files                              |
+|         | FileFolders      | GET       | /courses/:course_id/folders                            |
+|         | Apps             | GET       | /courses/:course_id/lti_apps                           |
+|         | Modules          | GET       | /courses/:course_id/modules                            |
+|         | ModuleInfo       | GET       | /courses/:course_id/modules/:id                        |
+|         | ModuleItems      | GET       | /courses/:course_id/modules/:module_id/items           |
+|         | ModuleItemInfo   | GET       | /courses/:course_id/modules/:module_id/items/:id       |
+|         | Pages            | GET       | /courses/:course_id/pages                              |
+|         | PageContent      | GET       | /courses/:course_id/pages/:url                         |
+|         | Quizzes          | GET       | /courses/:course_id/quizzes                            |
+|         | Sections         | GET       | /courses/:course_id/sections                           |
+|         | SectionInfo      | GET       | /courses/:course_id/sections/:id                       |
+|         | Settings         | GET       | /courses/:course_id/settings                           |
+|         | Users            | GET       | /courses/:course_id/users                              |
+| user    | List             | GET       | /accounts/:account_id/users                            |
+|         | Info             | GET       | /users/:id                                             |
+|         | Avatar           | GET       | /users/:user_id/avatars                                |
+|         | PageViews        | GET       | /users/:user_id/page_views                             |
+|         | Profile          | GET       | /users/:user_id/profile                                |
+|         | Settings         | GET       | /users/:id/settings                                    |
+
+All calls are made in the same manner:
+```
+$this->query->retrieve($callType, $section, $dataType, $pathVariables);
+```
+The first three parts are easy enough, simply copy and paste the values from the above table. `$pathVariables`, on the other hand, is more difficult. It is to be an associative array where the keys identify the variable in the API Path and the the values identify the value of the variables.
+```
+$callType = 'GET';
+$section = 'account';
+$dataType = 'Courses';
+$pathVariables = array(
+  'account_id' => 42
+);
+$courses = $this->query->retrieve($callType, $section, $dataType, $pathVariables);
+```
+The results of this example would be the consolidated list of courses for account 32, formatted exactly as you would get from the API call, but without any pagination.
 
 [Back to Table of Contents](#table-of-contents)
 
