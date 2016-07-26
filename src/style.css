@@ -1,0 +1,383 @@
+/* Reset */
+article,aside,details,figcaption,figure,footer,header,hgroup,hr,menu,nav,section{display:block}a,hr{padding:0}abbr,address,article,aside,audio,b,blockquote,body,canvas,caption,cite,code,dd,del,details,dfn,div,dl,dt,em,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,mark,menu,nav,object,nav ol,p,pre,q,samp,section,small,span,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,nav ul,var,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:0 0}ins,mark{background-color:#ff9;color:#000}body{line-height:1}nav ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}a{margin:0;font-size:100%;vertical-align:baseline;background:0 0}ins{text-decoration:none}mark{font-style:italic;font-weight:700}del{text-decoration:line-through}abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}table{border-collapse:collapse;border-spacing:0}hr{height:1px;border:0;border-top:1px solid #ccc;margin:1em 0}input,select{vertical-align:middle}
+
+/* CSS */
+html {
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  margin: 5px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+header {
+  height: 50px;
+  margin: 5px 5px 10px;
+}
+
+header img {
+  margin-right: 5px;
+  height: 100%;
+}
+
+header h1 {
+  display: inline-block;
+  vertical-align: top;
+  font-weight: normal;
+  color: #777777;
+  font-size: 50px;
+  letter-spacing: -2px;
+}
+
+nav {
+  float: left;
+  margin: 0  10px  10px 5px;
+}
+
+nav ul {
+  border: 1px solid #cacaca;
+  border-radius: 5px;
+}
+
+nav ul li {
+  border-top: 1px solid #cacaca;
+  padding: 10px;
+}
+
+nav ul li:first-of-type {
+  border: none;
+}
+
+nav ul li:hover {
+  background-color: #eeeeee;
+  color: #23527c;
+}
+
+nav ul li.current {
+  background-color: #337ab7;
+  font-weight: bold;
+}
+
+nav ul li.current:hover {
+  background-color: #286090;
+}
+
+nav ul li a {
+  display: block;
+  color: #337ab7;
+  text-decoration: none;
+}
+
+nav ul li.current a {
+  color: #ffffff;
+}
+
+main {
+  overflow: auto;
+  margin: 10px 0 10px 10px;
+}
+
+main > * {
+  margin-right: 5px;
+}
+
+main p {
+  margin: 0 0 1em;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  background-color: transparent;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1em;
+}
+
+table > thead > tr > th, table > tbody > tr > th, table > tbody > tr > td {
+  padding: 8px;
+  vertical-align: bottom;
+}
+
+table > thead > tr > th {
+  border-top: none;
+  border-bottom: 2px solid #dddddd;
+}
+
+table > tbody > tr > th {
+  font-weight: normal;
+}
+
+table > tbody > tr > th, table > tbody > tr > td {
+  border-top: 1px solid #dddddd;
+}
+
+table > tbody > tr:hover > th, table > tbody > tr:hover > td {
+  background-color: #eeeeee;
+}
+
+form {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 0 1em;
+}
+
+form p {
+  display: inline-block;
+}
+
+form .input, form .radio {
+  position: relative;
+  display: table-row;
+}
+
+form .input label, form .input input, form .radio > label, form .radio > span, form .radio > span > label > span, form button {
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+
+form .input label, form .radio > label, form button {
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+form .input label, form .input input, form .radio > label, form .radio > span {
+  display: table-cell;
+  height: 20px;
+}
+
+form .input label, form .radio > label {
+  border-radius: 5px 0 0 5px;
+  color: #555555;
+  background-color: #eeeeee;
+  border-color: #cccccc;
+}
+
+form .input:hover label, form .radio:hover > label {
+  background-color: #f5f5f5;
+}
+
+form .optional label {
+  color: #ffffff;
+  background-color: #777777;
+}
+
+form .optional:hover label {
+  background-color: #707070;
+}
+
+form .input input, form .radio > span > label {
+  border-radius: 0 5px 5px 0;
+  font-size: 14px;
+  width: calc(100% - 26px);
+}
+
+form .radio > span > label:last-of-type > span {
+  border-radius: 0 5px 5px 0;
+}
+
+form .input input {
+  color: #555555;
+  background-color: #ffffff;
+  background-image: none;
+  border-color: #cccccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+form .radio > span {
+  padding: 0;
+  border-color: #cccccc;
+}
+
+form .radio > span > label {
+  position: relative;
+}
+
+form .radio > span > label > input {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  point-events: none; 
+}
+
+form .radio > span > label > span {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #ffffff;
+  background-color: #337ab7;
+  background-image: none;
+  border-radius: 0;
+  border-color: #2e6da4;
+}
+
+form .radio > span > label:hover > span, form .radio > span > label > input:checked + span {
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+form .radio > span > label:hover > input:checked + span {
+  background-color: #204d74;
+  border-color: #122b40;
+}
+
+form button {
+  text-align: center;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+
+form button:hover {
+  color: #333333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+
+form button[type='submit'] {
+  color: #ffffff;
+  background-color: #337ab7;
+  border-color: #2c6da4;
+}
+
+form button[type='submit']:hover {
+  color: #ffffff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+form button[type='reset'] {
+  color: #ffffff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+
+form button[type='reset']:hover {
+  color: #ffffff;
+  background-color: #31b0d5;
+  border-color: #269abc;
+}
+
+footer {
+  position: absolute;
+  background-color: #ffffff;
+}
+
+footer.open {
+  bottom: 0 !important;
+}
+
+footer.open, footer.close {
+  -moz-transition: bottom 0.4s ease-in-out;
+  -o-transition: bottom 0.4s ease-in-out;
+  -webkit-transition: bottom 0.4s ease-in-out;
+  transition: bottom 0.4s ease-in-out;
+}
+
+.center {
+  text-align: center;
+}
+
+img.center {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.warning, .error {
+  padding: 15px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+
+.error {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.section {
+  margin-bottom: 1em;
+  bacground-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.section form {
+  width: 100%;
+  border-spacing: initial;
+}
+
+.section-heading, .section-footer {
+  padding: 10px 15px;
+  margin: 0;
+  color: #333333;
+  background-color: #f5f5f5;
+}
+
+.section-heading {
+  border-bottom: 1px solid #dddddd;
+}
+
+.section-footer {
+  border-top: 1px solid #dddddd;
+}
+
+button.section-footer {
+  display: block;
+  width: 100%;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0 0 5px 5px;
+}
+
+button.section-footer:hover {
+  background-color: #e3e3e3;
+  cursor: pointer;
+}
+
+.section > table {
+  margin-bottom: 0;
+  border-top: 1px solid #dddddd;
+}
+
+.pointer {
+  cursor: pointer;
+}
