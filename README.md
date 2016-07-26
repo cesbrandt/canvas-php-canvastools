@@ -15,7 +15,7 @@
 - [Additional Applicable License](#additional-applicable-license)
 
 ## Introduction
-CanvasTools is a robust report generator for the [Canvas LMS](https://github.com/instructure/canvas-lms) developed by Instructure. Its development and distribution reflects no relationship between with Instructure and is no way officially supported by Instructure.
+CanvasTools is designed to work with the [Canvas LMS](https://github.com/instructure/canvas-lms), but is in no way associated with Instructure.
 
 CanvasTools was developed as an "easy" means to build complex reports, complexity being directly related to the API query requirements to generate said report, without having to give any focus to the querying. It was designed to be expandable and allows for GET, PUT, POST, and DELETE calls.
 
