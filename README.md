@@ -20,9 +20,15 @@ CanvasTools was developed as an "easy" means to build complex reports, complexit
 
 Queries for all all supplied calls have been tested and verified with the Canvas API, as of 2016-07-26. Additional tests have been ran to confirm that PUT, POST, and DELETE calls function, though none are included. Though it was designed with the ability to execute modification queries, it is not intended to. CanvasTools is intended to be used for report generation, nothing more. Any use of it beyond the supplied GET functions will is not supported and the implementers take full responsibility for using it such.
 
+[Back to Table of Contents](#table-of-contents)
+
 ## Highlights
 - Uniform API calling
 - Expansive call structure
+- HTML report generator
+- Excel report exporting
+
+[Back to Table of Contents](#table-of-contents)
 
 ## Requirements
 You need:
@@ -34,13 +40,15 @@ You need:
 - HTTPS
   - **Note**: It is possible to use without HTTPS if you disable `CURLOPT_SSL_VERIFYHOST` and `CURLOPT_SSL_VERIFYPEER`, though this is discouraged.
 - Canvas LMS Authorization Token (Account 1 Admin)
-- HTML report generator
-- Excel report exporting
+
+[Back to Table of Contents](#table-of-contents)
 
 ## Install
 There is nothing special about CanvasTools. So long as the requirements are met, it's a simple matter of putting the files on the webserver and configuring `config.php`.
 
 **Note**: There are no controls to restrict access to CanvasTools. It is **recommended** that where it is placed is a secure server with access controls to prevent unwarranted access.
+
+[Back to Table of Contents](#table-of-contents)
 
 ## How To Use
 CanvasTools was designed with the intent of making all reports a self-contained PHP class. These classes are stored in `./classes` and named for the class contained within (i.e., `class AccountTree {}` is stored in the file `class.AccountTree.php`). **Note**: CanvasTools was created with simplicity as a key goal. The name of the `class` **MUST** match the name in the filename.
@@ -55,6 +63,8 @@ There are five (5) "reports" included with CanvasTools:
 Reports are enabled in the `config.php` file. Simply add/remove the name of the classes whose reports you want enabled.
 
 As demonstrated by the `AccountTree` class, "report" is loosely used. The primary goal is a simplified API querying of the Canvas LMS. However, a report template has been created from generated meaningful reports from the data retrieved. These generic "reports" can be modified to supply any information pulled from the API calls.
+
+[Back to Table of Contents](#table-of-contents)
 
 ## Creating a New Report
 
@@ -144,6 +154,7 @@ The above example would result in a report like:
   4    JKL012     No
   5    MNO345     No
 ```
+
 ###### Row URLs
 There is only one reserved column title: url
 
@@ -167,8 +178,14 @@ Associating a URL with a data entry is as simple as adding it to the the array f
 ```
 This example would have a regular entry for the first row and a pseudo-anchor for the second.
 
+[Back to Table of Contents](#table-of-contents)
+
 ## License
 CanvasTools falls under The MIT License (MIT). Please see the [LICENSE](https://github.com/cesbrandt/canvas-php-canvastools/blob/master/LICENSE) file for the license agreement.
 
+[Back to Table of Contents](#table-of-contents)
+
 ## Additional Applicable License
 PHPExcel ([commit fcc5c6585574054bd2dce530d5fb3f5da745bc49](https://github.com/PHPOffice/PHPExcel/commit/fcc5c6585574054bd2dce530d5fb3f5da745bc49)) is utilized with minor modification to integrate with CanvasTools. The version was retrieved and modified on 2016-07-06 from https://github.com/PHPOffice/PHPExcel. The license holders of PHPExcel retain full rights in accordance with the GNU Lesser General Public License.
+
+[Back to Table of Contents](#table-of-contents)
