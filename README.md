@@ -7,6 +7,7 @@
 - [Install](#install)
 - [How To Use](#how-to-use)
   - [API Calls](#api-calls)
+    - [Using Parameters](#using-parameters)
 - [Creating a New Report](#creating-a-new-report)
   - [class.Template.php](#classtemplatephp)
   - [Report Generation](#report-generation)
@@ -19,7 +20,7 @@ CanvasTools is designed to work with the [Canvas LMS](https://github.com/instruc
 
 CanvasTools was developed as an "easy" means to build complex reports, complexity being directly related to the API query requirements to generate said report, without having to give any focus to the querying. It was designed to be expandable and allows for GET, PUT, POST, and DELETE calls.
 
-Queries for all all supplied calls have been tested and verified with the Canvas API, as of 2016-07-26. Additional tests have been ran to confirm that PUT, POST, and DELETE calls function, though none are included. Though it was designed with the ability to execute modification queries, it is not intended to. CanvasTools is intended to be used for report generation, nothing more. Any use of it beyond the supplied GET functions will is not supported and the implementers take full responsibility for using it such.
+Queries for all all supplied calls have been tested and verified with the [Canvas API](https://api.instructure.com/), as of 2016-07-26. Additional tests have been ran to confirm that PUT, POST, and DELETE calls function, though none are included. Though it was designed with the ability to execute modification queries, it is not intended to. CanvasTools is intended to be used for report generation, nothing more. Any use of it beyond the supplied GET functions will is not supported and the implementers take full responsibility for using it such.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -123,7 +124,7 @@ All calls are made in the same manner:
 ```
 $this->query->retrieve($callType, $section, $dataType, $pathVariables);
 ```
-The first three parts are easy enough, simply copy and paste the values from the above table. `$pathVariables`, on the other hand, is more difficult. It is to be an associative array where the keys identify the variable in the API Path and the the values identify the value of the variables.
+The first three parts are easy enough, simply copy and paste the values from the above table. `$pathVariables`, on the other hand, is more difficult. It is to be an associative array where the `key` identifies the variable in the API Path and the the `value` identifies the value of the variable.
 ```
 $callType = 'GET';
 $section = 'account';
@@ -134,6 +135,23 @@ $pathVariables = array(
 $courses = $this->query->retrieve($callType, $section, $dataType, $pathVariables);
 ```
 The results of this example would be the consolidated list of courses for account 32, formatted exactly as you would get from the API call, but without any pagination.
+
+###### **_Using Parameters_**
+Like with regular API calls, you can use the parameters detailed in the [Canvas API](https://api.instructure.com/). As with the `$pathVariables` array, these need to be supplied in an associative array. The `key` identifies the parameters and the `value` is what you are filtering by. This additional array is _optional_ and, if used, needs to be appended as the last variable in the call.
+```
+$callType = 'GET';
+$section = 'course';
+$dataType = 'Assignments';
+$pathVariables = array(
+  'course_id' => 42
+);
+$parameterVariables = array(
+  'include' => array('submission', 'all_dates', 'overrides'),
+  'search_term' => 'universe'
+);
+$courses = $this->query->retrieve($callType, $section, $dataType, $pathVariables, $parameterVariables);
+```
+CanvasTools will parse the entries exactly as they are, so they must be supplied as required by the API. If the API takes a variable as an array, it must be supplied as an array.
 
 [Back to Table of Contents](#table-of-contents)
 
